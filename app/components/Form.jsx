@@ -1,27 +1,45 @@
-function Form(){
+import {useState} from 'react'
+
+
+function Form(props){
    
+    const [name, setName] = useState("")
+    const [URL, setURL] = useState("")
+
+
    function handleClick(){
-    alert("Clicked!")
+    
+
+        props.submitFavLink({name, URL})
+
+
    }
-   
-    return( 
-        <div>
-            {/*form for the user to input date*/}
-        
-                 <form>
-                    <label>Name </label>
-                    <input type="text" />
 
-                    <label>URL</label>
-                    <input type="text" />
+   function handleNameInputChange(event){
+    console.log(event.target.value)
+    setName(event.target.value)
+   }
 
-                </form>
+   function handleURLInputChange(event){
+    console.log(event.target.value)
+    setURL(event.target.value)
+   }
 
-            <button onClick={handleClick}>Submit</button>
+   return(
+    <div>
+    <form>
+        <label>Name</label>
+        <input type ="text" onChange={handleNameInputChange}/>
 
-         </div>
+        <label>URL</label>
+        <input type ="text" onChange={handleURLInputChange}/>
 
-        )
+
+    </form>
+    <button onClick={handleClick}>Submit</button>
+
+    </div>
+   )
 
 }
 
